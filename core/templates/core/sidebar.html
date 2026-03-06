@@ -1,0 +1,149 @@
+<nav class="navbar navbar-vertical bg-dark text-light navbar-expand-lg">
+    <div class="collapse navbar-collapse" id="navbarVerticalCollapse">
+        <div class="navbar-vertical-content">
+            <ul class="navbar-nav flex-column" id="navbarVerticalNav">
+
+                <!-- Dashboard -->
+                <li class="nav-item">
+                    <div class="nav-item-wrapper">
+                        <a class="nav-link label-1" href="{% url 'base' %}" role="button" data-bs-toggle=""
+                            aria-expanded="false">
+                            <div class="d-flex align-items-center">
+                                <span class="nav-link-icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16px" height="16px"
+                                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                        stroke-linecap="round" stroke-linejoin="round" class="feather feather-grid">
+                                        <rect x="3" y="3" width="7" height="7"></rect>
+                                        <rect x="14" y="3" width="7" height="7"></rect>
+                                        <rect x="14" y="14" width="7" height="7"></rect>
+                                        <rect x="3" y="14" width="7" height="7"></rect>
+                                    </svg>
+                                </span>
+                                <span class="nav-link-text-wrapper">
+                                    <span class="nav-link-text">Dashboard</span>
+                                </span>
+                            </div>
+                        </a>
+                    </div>
+                </li>
+
+                <li class="nav-item">
+                    <p class="navbar-vertical-label"></p>
+                    <hr class="navbar-vertical-line">
+
+
+                    <!-- Mood history -->
+                    <div class="nav-item-wrapper">
+                        <a class="nav-link label-1" href="{% url 'mood_history' %}" role="button" data-bs-toggle=""
+                            aria-expanded="false">
+                            <div class="d-flex align-items-center">
+                                <span class="nav-link-icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <circle cx="12" cy="12" r="9" />
+                                        <path d="M8 14s1.5 2 4 2 4-2 4-2" />
+                                        <path d="M9 9h.01" />
+                                        <path d="M15 9h.01" />
+                                        <path d="M12 3v3" />
+                                    </svg>
+
+                                </span>
+                                <span class="nav-link-text-wrapper">
+                                    <span class="nav-link-text">Mood History</span>
+                                </span>
+                            </div>
+                        </a>
+                    </div>
+
+                    <!-- Food Explorer -->
+                    <div class="nav-item-wrapper">
+                        <a class="nav-link label-1" href="{% url 'food_explorer' %}" role="button" data-bs-toggle=""
+                            aria-expanded="false">
+                            <div class="d-flex align-items-center">
+                                <span class="nav-link-icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <circle cx="11" cy="11" r="8" />
+                                        <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                                    </svg>
+
+                                </span>
+                                <span class="nav-link-text-wrapper">
+                                    <span class="nav-link-text">Food Explorer</span>
+                                </span>
+                            </div>
+                        </a>
+                    </div>
+
+                    <!-- Profile -->
+                    {%if user.is_authenticated %}
+                    <div class="nav-item-wrapper">
+                        <a class="nav-link label-1" href="{% url 'user_list' %}" role="button" data-bs-toggle=""
+                            aria-expanded="false">
+                            <div class="d-flex align-items-center">
+                                <span class="nav-link-icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <circle cx="12" cy="7" r="4" />
+                                        <path d="M5.5 21a6.5 6.5 0 0 1 13 0" />
+                                    </svg>
+                                    <span class="nav-link-text-wrapper">
+                                        <span class="nav-link-text">Users</span>
+                                    </span>
+                            </div>
+                        </a>
+                    </div>
+                    {%endif%}
+                    <hr class="my-3">
+
+                    <div class="nav-item-wrapper">
+                        <a class="nav-link label-1" href="{% url 'food_category' %}" role="button" data-bs-toggle=""
+                            aria-expanded="false">
+                            <div class="d-flex align-items-center">
+                                <span class="nav-link-icon">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <!-- Category Tag -->
+                                        <path d="M4 7C4 5.9 4.9 5 6 5H14L20 11L14 17H6C4.9 17 4 16.1 4 15V7Z"
+                                            stroke="currentColor" stroke-width="2" stroke-linejoin="round" />
+
+                                        <!-- Tag Hole -->
+                                        <circle cx="8" cy="9" r="1.5" fill="currentColor" />
+
+                                        <!-- Plus -->
+                                        <path d="M12 9V13M10 11H14" stroke="currentColor" stroke-width="2"
+                                            stroke-linecap="round" />
+                                    </svg>
+
+
+                                    <span class="nav-link-text-wrapper">
+                                        <span class="nav-link-text">Food Category</span>
+                                    </span>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="nav-item-wrapper">
+                        <a class="nav-link label-1" href="{% url 'food_item' %}" role="button" data-bs-toggle=""
+                            aria-expanded="false">
+                            <div class="d-flex align-items-center">
+                                <span class="nav-link-icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor"
+                                        viewBox="0 0 24 24">
+                                        <path d="M12 3C7.03 3 3 6.58 3 11h18c0-4.42-4.03-8-9-8z" />
+                                        <path d="M2 13h20v2H2z" />
+                                        <path d="M19 17v2h-2v-2h-2v-2h2v-2h2v2h2v2z" />
+                                    </svg>
+
+
+
+                                    <span class="nav-link-text-wrapper">
+                                        <span class="nav-link-text">Food Item</span>
+                                    </span>
+                            </div>
+                        </a>
+                    </div>
+
+</nav>

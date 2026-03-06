@@ -1,0 +1,203 @@
+{% extends "core/index.html" %}
+
+{% block content %}
+<style>
+    /* Page background */
+    .mood-reco-page {
+        background: #f6efe7;
+        min-height: 100vh;
+    }
+
+    /* Hero */
+    .mood-hero h2 {
+        font-size: 2.4rem;
+        font-weight: 700;
+        color: #3b2a20;
+    }
+
+    .mood-hero p {
+        color: #7a665a;
+        font-size: 1.05rem;
+    }
+
+    /* Card base */
+    .reco-card {
+        background: #ffffff;
+        border-radius: 22px;
+        box-shadow: 0 18px 40px rgba(0, 0, 0, 0.08);
+    }
+
+    /* Primary recommendation */
+    .primary-box {
+        background: linear-gradient(135deg, #ede0d4, #f8f1ea);
+        border-radius: 18px;
+        padding: 25px;
+    }
+
+    .primary-box img {
+        border-radius: 16px;
+    }
+
+    /* Titles */
+    .section-title {
+        font-weight: 600;
+        color: #4a3527;
+    }
+
+    /* Alternative cards */
+    .alt-card {
+        border-radius: 18px;
+        overflow: hidden;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+        transition: transform .3s ease;
+    }
+
+    .alt-card:hover {
+        transform: translateY(-6px);
+    }
+
+    .alt-card img {
+        height: 240px;
+        object-fit: cover;
+    }
+
+    /* Buttons */
+    .btn-coffee {
+        background: #6f4e37;
+        color: #fff;
+        border-radius: 30px;
+        padding: 10px 24px;
+    }
+
+    .btn-coffee:hover {
+        background: #5a3d2b;
+        color: #fff;
+    }
+</style>
+<div class="mood-reco-page py-5">
+    <div class="container">
+
+        {% if recommendation %}
+
+        <!-- Hero -->
+        <div class="text-center mood-hero mb-5">
+            <h2>Your Mood-Based Food Recommendation 🍽️</h2>
+            <p>Crafted especially for how you’re feeling right now</p>
+        </div>
+
+        <!-- Recommendation Card -->
+        <div class="reco-card p-4 mb-5">
+
+            <!-- Primary -->
+            <h4 class="section-title mb-3">🌟 Today’s Highlight</h4>
+
+            {% if recommendation.primary_recommendation %}
+            <div class="primary-box d-flex align-items-center gap-4">
+                {% if recommendation.primary_recommendation.image_url %}
+                <img src="{{ recommendation.primary_recommendation.image_url }}" width="140" height="140">
+                {% endif %}
+                <div>
+                    <h5 class="fw-bold mb-2">
+                        {{ recommendation.primary_recommendation.name }}
+                    </h5>
+                    <p class="text-muted mb-2">
+                        {{ recommendation.ai_explanation }}
+                    </p>
+
+                    {% if recommendation.primary_recommendation.recipe_link %}
+                    <a href="{{ recommendation.primary_recommendation.recipe_link }}" target="_blank"
+                        class="btn btn-coffee btn-sm">
+                        View Recipe
+                    </a>
+                    {% endif %}
+                </div>
+            </div>
+            {% endif %}
+
+            <hr class="my-5">
+
+            <!-- Alternatives -->
+            <h5 class="section-title mb-4">🔁 You may also enjoy</h5>
+
+            <div class="row g-4">
+                {% for food in recommendation.alternative_recommendations.all %}
+                <div class="col-md-4 col-sm-6">
+                    <div class="alt-card bg-white text-center">
+                        {% if food.image_url %}
+                        <img src="{{ food.image_url }}" class="w-100">
+                        {% endif %}
+                        <div class="p-3">
+                            <h6 class="fw-semibold mb-0">
+                                {{ food.name }}
+                            </h6>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+
+            <hr class="my-5">
+
+            <!-- AI Reason -->
+            <h5 class="section-title">🧠 Why this works for you</h5>
+            <p class="text-muted">
+                {{ recommendation.ai_explanation }}
+            </p>
+
+        </div>
+        {% endif %}
+
+    
+        {% if food_history %}
+        <hr class="my-5">
+
+        <h4 class="section-title mb-4">📜 Your Previous Food Suggestions</h4>
+
+        <div class="row g-4">
+            {% for item in food_history %}
+            <div class="col-md-4 col-sm-6">
+                <div class="reco-card p-3 h-100">
+
+                    <small class="text-muted">
+                        {{ item.mood_entry.created_at|date:"M d, Y" }}
+                    </small>
+
+                    {% if item.primary_recommendation.image_url %}
+                    <img src="{{ item.primary_recommendation.image_url }}" class="w-100 my-3"
+                        style="border-radius:16px; height:180px; object-fit:cover;">
+                    {% endif %}
+
+                    <h6 class="fw-bold mb-1">
+                        {{ item.primary_recommendation.name }}
+                    </h6>
+
+                    <p class="text-muted small mb-2">
+                        Mood: {{ item.mood_entry.mood_category }}
+                    </p>
+
+                    {% if item.primary_recommendation.recipe_link %}
+                    <a href="{{ item.primary_recommendation.recipe_link }}" target="_blank"
+                        class="btn btn-coffee btn-sm">
+                        View Recipe
+                    </a>
+                    {% endif %}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        <!-- Empty State -->
+        <!-- <div class="reco-card text-center p-5">
+            <h4 class="fw-bold mb-3">No food suggestions yet ☕</h4>
+            <p class="text-muted mb-4">
+                Log your mood and let us brew something perfect for you.
+            </p>
+            <a href="{% url 'log_mood' %}" class="btn btn-coffee btn-lg">
+                Log Your Mood
+            </a>
+        </div> -->
+
+    </div>
+</div>
+{% endblock %}

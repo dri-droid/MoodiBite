@@ -1,0 +1,114 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-10">
+
+            <!-- ================= ADD / EDIT CATEGORY FORM ================= -->
+            <div class="card shadow-sm mb-4">
+                <div class="card-body p-4">
+
+                    <h4 class="text-center mb-3">Add Food Item</h4>
+                    <p class="text-center text-muted mb-4">
+                        Create and manage food items
+                    </p>
+
+                    <form method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {{ form.non_field_errors }}
+
+                        {% for field in form %}
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold">
+                                {{ field.label }}
+                            </label>
+                            {{ field }}
+                            {% if field.help_text %}
+                            <div class="form-text"></div>
+                            {% endif %}
+                            {% for error in field.errors %}
+                            <div class="text-danger small">{{ error }}</div>
+                            {% endfor %}
+                        </div>
+                        {% endfor %}
+
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-secondary">
+                                Save Item
+                            </button>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+<!-- 
+             -->
+            <!-- ================= CATEGORY LIST TABLE ================= -->
+            <div class="card shadow-sm">
+                <div class="card-body p-4">
+
+                    <h5 class="mb-3">Food Items</h5>
+
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-hover align-middle">
+                            <thead class="table-light">
+                                <tr>
+                                    <th style="width: 30%;">Name</th>
+                                    <th style="width: 25%;">Description</th>
+                                    <th>Category</th>
+                                    <th>Calories</th>
+                                    <th>Prep_time</th>
+                                    <th>Difficulty</th>
+                                    <th>Image</th>
+                                    <th>Recipe</th>
+                                    <th colspan="2">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for f in food_items %}
+                                <tr>
+                                    <td class="fw-semibold">{{ f.name }}</td>
+                                    <td>
+                                        {% if f.description|length > 25 %}
+                                        {{ f.description|slice:":25" }}...
+                                        {% else %}
+                                        {{ f.description }}
+                                        {% endif %}
+                                    </td>
+                                    <td>{{ f.category }}</td>
+                                    <td>{{ f.calories }}</td>
+                                    <td>{{ f.prep_time }}</td>
+                                    <td>{{ f.difficulty }}</td>
+                                    <td>
+                                        <img src="{{ f.image_url }}" alt="{{ f.name }}"
+                                            style="width:60px; height:60px; object-fit:cover; border-radius:5px;">
+                                    
+                                    </td>
+
+                                    <td>{{f.recipe_link}}</td>
+                                    <td><a href="{% url 'food_item_update' f.id %}"
+                                            class="btn btn-outline-info">Edit</a></td>
+                                    <td><a href="{% url 'food_item_delete' f.id %}"
+                                            class="btn btn-outline-danger">Delete</a></td>
+                                </tr>
+                                {% empty %}
+                                <tr>
+                                    <td colspan="3" class="text-center text-muted">
+                                        No food items added yet.
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

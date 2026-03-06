@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en-US" dir="ltr" data-navigation-type="default" data-navbar-horizontal-shape="default">
+
+<!-- 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 -->
+<!-- Mirrored from prium.github.io/phoenix/v1.23.0/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 18 Jul 2025 04:03:37 GMT -->
+<!-- Added by HTTrack -->
+<meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- ===============================================-->
+  <!--    Document Title-->
+  <!-- ===============================================-->
+  <title>
+    {% block title %}
+    MoodiBite
+    {% endblock title %}
+  </title>
+
+  <!-- ===============================================-->
+  <!--    Favicons-->
+  <!-- ===============================================-->
+  <link rel="apple-touch-icon" href="/static/assets/img/icons/logo-m.png" />
+  <link rel="icon" type="image/png" href="/static/assets/img/icons/logo-m.png" />
+  <link rel="shortcut icon" type="image/x-icon" href="/static/assets/img/icons/logo-m.png" />
+  <meta name="msapplication-TileImage" content="/media/Asset 9@4x.png">
+  <meta name="theme-color" content="#ffffff">
+  <script src="/static/vendors/simplebar/simplebar.min.js"></script>
+  <script src="/static/assets/js/config.js"></script>
+
+  <!-- ===============================================-->
+  <!--    Stylesheets-->
+  <!-- ===============================================-->
+  <link rel="preconnect" href="https://fonts.googleapis.com/">
+  <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800;900&amp;display=swap"
+    rel="stylesheet">
+  <link href="/static/vendors/simplebar/simplebar.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="../../../unicons.iconscout.com/release/v4.0.8/css/line.css">
+  <link href="/static/assets/css/theme-rtl.min.css" type="text/css" rel="stylesheet" id="style-rtl">
+  <link href="/static/assets/css/theme.min.css" type="text/css" rel="stylesheet" id="style-default">
+  <link href="/static/assets/css/style.css" type="text/css" rel="stylesheet" id="style-rt2">
+  <link href="/static/assets/css/user-rtl.min.css" type="text/css" rel="stylesheet" id="user-style-rtl">
+  <link href="/static/assets/css/user.min.css" type="text/css" rel="stylesheet" id="user-style-default">
+  <script>
+    var phoenixIsRTL = window.config.config.phoenixIsRTL;
+    if (phoenixIsRTL) {
+      var linkDefault = document.getElementById('style-default');
+      var userLinkDefault = document.getElementById('user-style-default');
+      linkDefault.setAttribute('disabled', true);
+      userLinkDefault.setAttribute('disabled', true);
+      document.querySelector('html').setAttribute('dir', 'rtl');
+    } else {
+      var linkRTL = document.getElementById('style-rtl');
+      var userLinkRTL = document.getElementById('user-style-rtl');
+      linkRTL.setAttribute('disabled', true);
+      userLinkRTL.setAttribute('disabled', true);
+    }
+  </script>
+  <link href="/static/vendors/leaflet/leaflet.css" rel="stylesheet">
+  <link href="/static/vendors/leaflet.markercluster/MarkerCluster.css" rel="stylesheet">
+  <link href="/static/vendors/leaflet.markercluster/MarkerCluster.Default.css" rel="stylesheet">
+  <style>
+    .chart-card {
+      width: 100%;
+      max-width: 1000px;
+      height: 500px;
+      padding: 16px;
+      background: #fff;
+      border-radius: 12px;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- ===============================================-->
+  <!--    Main Content-->
+  <!-- ===============================================-->
+  <main class="main" id="top">
+    {% block admin-sidebar %}
+    {% include 'core/sidebar.html' %}
+    {% endblock admin-sidebar %}
+
+    {% if messages %}
+    <div class="message-container position-fixed top-0 end-0 p-3" style="z-index: 9999;">
+      {% for message in messages %}
+      {% if message.tags == 'success' %}
+      <div class="alert alert-success d-flex align-items-center alert-dismissible fade show auto-dismiss" role="alert">
+        <span class="fas fa-check-circle text-success fs-5 me-3"></span>
+        <p class="mb-0 flex-1">{{ message }}</p>
+        <button class="btn-close" type="button" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+      {% elif message.tags == 'error' %}
+      <div class="alert alert-danger d-flex align-items-center alert-dismissible fade show auto-dismiss" role="alert">
+        <span class="fas fa-times-circle fs-5 me-3"></span>
+        <p class="mb-0 flex-1">{{ message }}</p>
+        <button class="btn-close" type="button" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+      {% elif message.tags == 'warning' %}
+      <div class="alert alert-warning d-flex align-items-center alert-dismissible fade show auto-dismiss" role="alert">
+        <span class="fas fa-exclamation-triangle fs-5 me-3"></span>
+        <p class="mb-0 flex-1">{{ message }}</p>
+        <button class="btn-close" type="button" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+      {% else %}
+      <div class="alert alert-info d-flex align-items-center alert-dismissible fade show auto-dismiss" role="alert">
+        <span class="fas fa-info-circle fs-5 me-3"></span>
+        <p class="mb-0 flex-1">{{ message }}</p>
+        <button class="btn-close" type="button" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+      {% endif %}
+      {% endfor %}
+    </div>
+    {% endif %}
+
+
+    {% block admin-header %}
+    {% include 'core/header.html' %}
+    {% endblock admin-header %}
+    <script>
+      var navbarTopShape = window.config.config.phoenixNavbarTopShape;
+      var navbarPosition = window.config.config.phoenixNavbarPosition;
+      var body = document.querySelector('body');
+      var navbarDefault = document.querySelector('#navbarDefault');
+      var navbarTop = document.querySelector('#navbarTop');
+      var topNavSlim = document.querySelector('#topNavSlim');
+      var navbarTopSlim = document.querySelector('#navbarTopSlim');
+      var navbarCombo = document.querySelector('#navbarCombo');
+      var navbarComboSlim = document.querySelector('#navbarComboSlim');
+      var dualNav = document.querySelector('#dualNav');
+
+      var documentElement = document.documentElement;
+      var navbarVertical = document.querySelector('.navbar-vertical');
+
+      if (navbarPosition === 'dual-nav') {
+        topNavSlim?.remove();
+        navbarTop?.remove();
+        navbarTopSlim?.remove();
+        navbarCombo?.remove();
+        navbarComboSlim?.remove();
+        navbarDefault?.remove();
+        navbarVertical?.remove();
+        dualNav.removeAttribute('style');
+        document.documentElement.setAttribute('data-navigation-type', 'dual');
+
+      } else if (navbarTopShape === 'slim' && navbarPosition === 'vertical') {
+        navbarDefault?.remove();
+        navbarTop?.remove();
+        navbarTopSlim?.remove();
+        navbarCombo?.remove();
+        navbarComboSlim?.remove();
+        topNavSlim.style.display = 'block';
+        navbarVertical.style.display = 'inline-block';
+        document.documentElement.setAttribute('data-navbar-horizontal-shape', 'slim');
+
+      } else if (navbarTopShape === 'slim' && navbarPosition === 'horizontal') {
+        navbarDefault?.remove();
+        navbarVertical?.remove();
+        navbarTop?.remove();
+        topNavSlim?.remove();
+        navbarCombo?.remove();
+        navbarComboSlim?.remove();
+        dualNav?.remove();
+        navbarTopSlim.removeAttribute('style');
+        document.documentElement.setAttribute('data-navbar-horizontal-shape', 'slim');
+      } else if (navbarTopShape === 'slim' && navbarPosition === 'combo') {
+        navbarDefault?.remove();
+        navbarTop?.remove();
+        topNavSlim?.remove();
+        navbarCombo?.remove();
+        navbarTopSlim?.remove();
+        dualNav?.remove();
+        navbarComboSlim.removeAttribute('style');
+        navbarVertical.removeAttribute('style');
+        document.documentElement.setAttribute('data-navbar-horizontal-shape', 'slim');
+      } else if (navbarTopShape === 'default' && navbarPosition === 'horizontal') {
+        navbarDefault?.remove();
+        topNavSlim?.remove();
+        navbarVertical?.remove();
+        navbarTopSlim?.remove();
+        navbarCombo?.remove();
+        navbarComboSlim?.remove();
+        dualNav?.remove();
+        navbarTop.removeAttribute('style');
+        document.documentElement.setAttribute('data-navigation-type', 'horizontal');
+      } else if (navbarTopShape === 'default' && navbarPosition === 'combo') {
+        topNavSlim?.remove();
+        navbarTop?.remove();
+        navbarTopSlim?.remove();
+        navbarDefault?.remove();
+        navbarComboSlim?.remove();
+        dualNav?.remove();
+        navbarCombo.removeAttribute('style');
+        navbarVertical.removeAttribute('style');
+        document.documentElement.setAttribute('data-navigation-type', 'combo');
+      } else {
+        topNavSlim?.remove();
+        navbarTop?.remove();
+        navbarTopSlim?.remove();
+        navbarCombo?.remove();
+        navbarComboSlim?.remove();
+        dualNav?.remove();
+        navbarDefault.removeAttribute('style');
+        navbarVertical.removeAttribute('style');
+      }
+
+      var navbarTopStyle = window.config.config.phoenixNavbarTopStyle;
+      var navbarTop = document.querySelector('.navbar-top');
+      if (navbarTopStyle === 'darker') {
+        navbarTop.setAttribute('data-navbar-appearance', 'darker');
+      }
+
+      var navbarVerticalStyle = window.config.config.phoenixNavbarVerticalStyle;
+      var navbarVertical = document.querySelector('.navbar-vertical');
+      if (navbarVerticalStyle === 'darker') {
+        navbarVertical.setAttribute('data-navbar-appearance', 'darker');
+      }
+    </script>
+    <div class="content">
+      {% block content %}
+      <div class="row mb-4">
+        <div class="col-md-3">
+          <div class="card p-3">Users<br><strong>{{ total_users }}</strong></div>
+        </div>
+        <div class="col-md-3">
+          <div class="card p-3">Mood Entries<br><strong>{{ total_entries }}</strong></div>
+        </div>
+        <div class="col-md-3">
+          <div class="card p-3">Recommendations<br><strong>{{ total_predictions }}</strong></div>
+        </div>
+        <div class="col-md-3">
+          <div class="card p-3">Avg Mood<br><strong>{{ avg_mood }}/10</strong></div>
+        </div>
+        
+      </div>
+      <div class="card p-3 mb-4">
+        <h6>Average Mood (Last 30 Days)</h6>
+        <div style="height:280px;">
+          <canvas id="moodTrend"></canvas>
+        </div>
+      </div>
+      <div class="card p-3 mt-4">
+  <h6>Recent Mood Entries</h6>
+
+  <table class="table table-sm table-hover align-middle">
+    <thead>
+      <tr>
+        <th>User</th>
+        <th>Mood</th>
+        <th>Intensity</th>
+        <th>Stress</th>
+        <th>Energy</th>
+        <th>Time</th>
+        <th>Date</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      {% for entry in recent_moods %}
+      <tr>
+        <td>{{ entry.user.username }}</td>
+
+        <td>
+          {{ entry.mood_category.emoji }}
+          {{ entry.mood_category.name }}
+        </td>
+
+        <td>{{ entry.mood_intensity }}/10</td>
+        <td>{{ entry.stress_level }}/10</td>
+        <td>{{ entry.energy_level }}/10</td>
+        <td>{{ entry.time_of_day }}</td>
+
+        <td>{{ entry.created_at|date:"M d, H:i" }}</td>
+      </tr>
+      {% empty %}
+      <tr>
+        <td colspan="7" class="text-center text-muted">
+          No mood entries yet
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+
+
+      {% endblock content %}
+    </div>
+  </main><!-- ===============================================-->
+  <!--    End of Main Content-->
+  <!-- ===============================================-->
+
+  <!-- ===============================================-->
+  <!--    JavaScripts-->
+  <!-- ===============================================-->
+  <script src="/static/vendors/popper/popper.min.js"></script>
+  <script src="/static/vendors/bootstrap/bootstrap.min.js"></script>
+  <script src="/static/vendors/anchorjs/anchor.min.js"></script>
+  <script src="/static/vendors/is/is.min.js"></script>
+  <script src="/static/vendors/fontawesome/all.min.js"></script>
+  <script src="/static/vendors/lodash/lodash.min.js"></script>
+  <script src="/static/vendors/list.js/list.min.js"></script>
+  <script src="/static/vendors/feather-icons/feather.min.js"></script>
+  <script src="/static/vendors/dayjs/dayjs.min.js"></script>
+  <script src="/static/vendors/leaflet/leaflet.js"></script>
+  <script src="/static/vendors/leaflet.markercluster/leaflet.markercluster.js"></script>
+  <script src="/static/vendors/leaflet.tilelayer.colorfilter/leaflet-tilelayer-colorfilter.min.js"></script>
+  <script src="/static/assets/js/phoenix.js"></script>
+  <script src="/static/vendors/echarts/echarts.min.js"></script>
+  <script src="/static/assets/js/dashboards/ecommerce-dashboard.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      // Auto dismiss alerts after 5 seconds
+      const autoHideAlerts = document.querySelectorAll('.auto-dismiss');
+      autoHideAlerts.forEach(function (alert) {
+        setTimeout(function () {
+          // Use Bootstrap's alert hide method
+          const bsAlert = new bootstrap.Alert(alert);
+          bsAlert.close();
+        }, 5000); // 5000ms = 5 seconds
+      });
+
+      // Add slide-in animation for messages
+      const messageContainer = document.querySelector('.message-container');
+      if (messageContainer) {
+        messageContainer.style.transform = 'translateX(100%)';
+        messageContainer.style.transition = 'transform 0.3s ease-in-out';
+
+        setTimeout(function () {
+          messageContainer.style.transform = 'translateX(0)';
+        }, 100);
+      }
+    });
+    new Chart(document.getElementById('moodTrend'), {
+  type: 'line',
+  data: {
+    labels: {{ trend_labels|safe }},
+    datasets: [{
+      label: 'Avg Mood',
+      data: {{ trend_data|safe }},
+      tension: 0.4,
+      fill: true
+    }]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    scales: { y: { min: 1, max: 10 } }
+  }
+});
+    
+
+  </script>
+</body>
+
+</html>

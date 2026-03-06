@@ -1,0 +1,49 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+<body class="bg-light">
+
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+
+            <div class="card shadow-sm">
+                <div class="card-body p-4">
+
+                    <h3 class="text-center mb-3">Update Your Mood</h3>
+                    <p class="text-center text-muted mb-4">
+                        Share how you're feeling so MoodiBite can recommend food that matches your mood.
+                    </p>
+
+                    <form method="POST">
+                      {%csrf_token%}
+                      {{form.non_field_error}}
+                      <!-- Loop through fields -->
+                        {% for field in form %}
+                            <div class="mb-4">
+                                <label class="form-label fw-semibold">{{ field.label }}</label>
+                                {{ field }}
+                                {% if field.help_text %}
+                                    <div class="form-text">{{ field.help_text }}</div>
+                                {% endif %}
+                                {% for error in field.errors %}
+                                    <div class="text-danger">{{ error }}</div>
+                                {% endfor %}
+                            </div>
+                        {% endfor %}
+
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-secondary btn-lg">Get Food Recommendations</button>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
+{%endblock content%}

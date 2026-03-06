@@ -1,0 +1,265 @@
+/* HERO */
+.hero-wrapper {
+  position: relative;
+  min-height: 85vh;
+  background: url('/static/assets/img/bg/bg-1.jpg') center/cover no-repeat;
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg,
+      rgba(0, 0, 0, 0.65),
+      rgba(0, 0, 0, 0.2));
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  padding-top: 20vh;
+}
+
+.hero-accent {
+  color: #f3c892;
+}
+
+/* SPLIT */
+.split-section {
+  padding: 100px 0;
+}
+
+.image-card {
+  height: 360px;
+  border-radius: 22px;
+  background-image: url("/static/assets/img/bg/bg-2.jpg");
+  background-size: cover;
+  background-position: center;
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.08);
+}
+
+
+/* CTA */
+.cta-section {
+  padding: 100px 0;
+  background: linear-gradient(135deg,
+      #fff7f1,
+      #f3efe9);
+}
+
+.cta-card {
+  max-width: 820px;
+  margin: auto;
+  padding: 70px 40px;
+  border-radius: 28px;
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(12px);
+  box-shadow:
+    0 40px 80px rgba(0, 0, 0, 0.08),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.6);
+}
+
+.cta-title {
+  font-size: 2.6rem;
+  font-weight: 700;
+  color: #1f2937;
+  margin-bottom: 18px;
+}
+
+.cta-title span {
+  background: linear-gradient(90deg, #813f11, #ffb347);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.cta-subtitle {
+  font-size: 1.1rem;
+  color: #6b7280;
+  margin-bottom: 40px;
+  max-width: 520px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 42px;
+  border-radius: 999px;
+  font-size: 1.05rem;
+  font-weight: 600;
+  text-decoration: none;
+  color: #fff;
+  background: linear-gradient(90deg, #813f11, #ffb347);
+  box-shadow: 0 20px 40px rgba(215, 103, 23, 0.35);
+  transition: all 0.3s ease;
+}
+
+.cta-btn span {
+  transition: transform 0.3s ease;
+}
+
+.cta-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 30px 60px rgba(164, 92, 41, 0.45);
+}
+
+.cta-btn:hover span {
+  transform: translateX(4px);
+}
+
+/* HOW IT WORKS SECTION */
+.how-it-works {
+  background: linear-gradient(180deg, #faf7f2, #ffffff);
+}
+
+/* Card Style */
+.step-card {
+  background: rgba(255, 255, 255, 0.85);
+  border-radius: 18px;
+  padding: 2.5rem 2rem;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
+  transition: all 0.35s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Hover effect */
+.step-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.08);
+}
+
+/* Step Number */
+.step-number {
+  font-size: 3rem;
+  font-weight: 700;
+  color: rgba(176, 137, 104, 0.25);
+  /* warm beige */
+  line-height: 1;
+}
+
+/* Text */
+.step-card h4 {
+  color: #2b2b2b;
+}
+
+.step-card p {
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+/* ===== PROFILE PAGE BACKGROUND ===== */
+.flex-grow-1 {
+    background: linear-gradient(180deg, #faf7f3, #f1ede7) !important;
+}
+
+/* ===== PROFILE CARD ===== */
+.card.shadow-sm {
+    border-radius: 24px;
+    border: none;
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 30px 60px rgba(0,0,0,0.08) !important;
+}
+
+.profile-img {
+    border-color: #ffb347 !important;
+}
+
+/* ===== ACCORDION CONTAINER ===== */
+.accordion {
+    border-radius: 24px;
+    overflow: hidden;
+}
+
+/* ===== ACCORDION ITEM ===== */
+.accordion-item {
+    border: none;
+    margin-bottom: 16px;
+    border-radius: 20px;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 25px 50px rgba(0,0,0,0.08);
+}
+
+/* ===== ACCORDION HEADER BUTTON ===== */
+.accordion-button {
+    background: transparent;
+    font-weight: 600;
+    padding: 22px 26px;
+    font-size: 1.05rem;
+    color: #1f2937;
+    border-radius: 20px;
+    box-shadow: none;
+}
+
+.accordion-button::after {
+    transform: scale(1.15);
+}
+
+/* ===== ACTIVE ACCORDION ===== */
+.accordion-button:not(.collapsed) {
+    background: linear-gradient(90deg, #fff4ea, #ffffff);
+    color: #ff7a18;
+    box-shadow: inset 0 -1px 0 rgba(0,0,0,0.05);
+}
+
+/* Remove default blue focus */
+.accordion-button:focus {
+    box-shadow: none;
+}
+
+/* ===== ACCORDION BODY ===== */
+.accordion-body {
+    padding: 26px;
+    background: rgba(255,255,255,0.65);
+    border-top: 1px solid rgba(0,0,0,0.06);
+}
+
+/* ===== FORM ELEMENTS ===== */
+.form-control,
+form select,
+form textarea {
+    border-radius: 14px;
+    padding: 12px 16px;
+    border: 1px solid #e5e7eb;
+}
+
+.form-control:focus {
+    border-color: #ffb347;
+    box-shadow: 0 0 0 3px rgba(255,179,71,0.25);
+}
+
+/* ===== BUTTONS ===== */
+.btn-primary {
+    background: linear-gradient(90deg, #ff7a18, #ffb347);
+    border: none;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(90deg, #ff8a2a, #ffc062);
+}
+
+.btn-warning {
+    background: transparent;
+    border: 1px solid #ffb347;
+    color: #ff7a18;
+}
+
+.btn-warning:hover {
+    background: #ffb347;
+    color: #fff;
+}
+
+.btn-outline-danger {
+    border-radius: 999px;
+}
+
+/* ===== SMALL TEXT ===== */
+.text-muted {
+    color: #6b7280 !important;
+}
+
+

@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en-US" dir="ltr" data-navigation-type="default" data-navbar-horizontal-shape="default">
+
+
+<!-- Mirrored from prium.github.io/phoenix/v1.23.0/pages/authentication/simple/sign-in.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 18 Jul 2025 04:00:57 GMT -->
+<!-- Added by HTTrack -->
+<meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- ===============================================-->
+  <!--    Document Title-->
+  <!-- ===============================================-->
+  <title>MoodiBite</title>
+
+  <!-- ===============================================-->
+  <!--    Favicons-->
+  <!-- ===============================================-->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="apple-touch-icon" sizes="180x180" href="/static/assets/img/icons/logo-m.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/static/assets/img/icons/logo-m.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/static/assets/img/icons/logo-m.png">
+  <link rel="shortcut icon" type="image/x-icon" href="/static/assets/img/icons/logo-m.png">
+  <link rel="manifest" href="/static/assets/img/favicons/manifest.json">
+  <meta name="msapplication-TileImage" content="/static/assets/img/favicons/mstile-150x150.png">
+  <meta name="theme-color" content="#ffffff">
+  <script src="/static/vendors/simplebar/simplebar.min.js"></script>
+  <script src="/static/assets/js/config.js"></script>
+
+  <!-- ===============================================-->
+  <!--    Stylesheets-->
+  <!-- ===============================================-->
+  <link rel="preconnect" href="https://fonts.googleapis.com/">
+  <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800;900&amp;display=swap"
+    rel="stylesheet">
+  <link href="/static/vendors/simplebar/simplebar.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/static//static/unicons.iconscout.com/release/v4.0.8/css/line.css">
+  <link href="/static/assets/css/theme-rtl.min.css" type="text/css" rel="stylesheet" id="style-rtl">
+  <link href="/static/assets/css/theme.min.css" type="text/css" rel="stylesheet" id="style-default">
+  <link href="/static/assets/css/user-rtl.min.css" type="text/css" rel="stylesheet" id="user-style-rtl">
+  <link href="/static/assets/css/user.min.css" type="text/css" rel="stylesheet" id="user-style-default">
+  <script>
+    var phoenixIsRTL = window.config.config.phoenixIsRTL;
+    if (phoenixIsRTL) {
+      var linkDefault = document.getElementById('style-default');
+      var userLinkDefault = document.getElementById('user-style-default');
+      linkDefault.setAttribute('disabled', true);
+      userLinkDefault.setAttribute('disabled', true);
+      document.querySelector('html').setAttribute('dir', 'rtl');
+    } else {
+      var linkRTL = document.getElementById('style-rtl');
+      var userLinkRTL = document.getElementById('user-style-rtl');
+      linkRTL.setAttribute('disabled', true);
+      userLinkRTL.setAttribute('disabled', true);
+    }
+  </script>
+  <style>
+    body {
+      background: linear-gradient(135deg, #f6efe7, #efe3d6);
+    }
+
+    .auth-card {
+      background: #ffffff;
+      border-radius: 26px;
+      box-shadow: 0 22px 50px rgba(0, 0, 0, 0.12);
+      padding: 2.5rem 2.2rem;
+    }
+
+    .auth-title {
+      color: #3b2a20;
+      font-weight: 800;
+    }
+
+    .auth-subtitle {
+      color: #7a665a;
+      font-size: 0.95rem;
+    }
+
+    .form-control {
+      border-radius: 14px;
+      border: 1px solid #d8cfc6;
+      padding: 12px 14px;
+    }
+
+    .form-control:focus {
+      border-color: #6f4e37;
+      box-shadow: 0 0 0 0.15rem rgba(111, 78, 55, 0.25);
+    }
+
+    .form-icon {
+      color: #8a6d5a;
+    }
+
+    .btn-moodibite {
+      background: #6f4e37;
+      border: none;
+      border-radius: 30px;
+      padding: 12px;
+      font-weight: 600;
+      color: white;
+    }
+
+    .btn-moodibite:hover {
+      background: #5a3d2b;
+    }
+
+    .auth-link {
+      color: #6f4e37;
+    }
+
+    .auth-link:hover {
+      color: #5a3d2b;
+      text-decoration: underline;
+    }
+  </style>
+
+  </style>
+</head>
+
+<body>
+  <!-- ===============================================-->
+  <!--    Main Content-->
+  <!-- ===============================================-->
+  {% if messages %}
+  <div class="container mt-3">
+    {% for message in messages %}
+    <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+      {{ message }}
+      <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+    {% endfor %}
+  </div>
+  {% endif %}
+
+  <main class="main" id="top">
+    <div class="container">
+      <div class="row flex-center min-vh-100 py-5">
+        <div class="col-sm-10 col-md-8 col-lg-5 col-xl-5 col-xxl-3"><a
+            class="d-flex flex-center text-decoration-none mb-4" href="/static/index.html">
+            <div class="d-flex align-items-center fw-bolder d-inline-block"><img
+                src="/static/assets/img/icons/logo-m.png" style="mix-blend-mode: multiply;" alt="phoenix" width="130" />
+            </div>
+          </a>
+          <div class="auth-card  text-center mb-7">
+            <h3 class="auth-title text-body-highlight">Sign In</h3>
+            <p class="auth-subtitle text-body-tertiary">Get access to your account</p>
+            <div class="position-relative">
+              <hr class="bg-body-secondary mt-5 mb-4" />
+            </div>
+            <form method="POST">
+              {% csrf_token %}
+
+              <div class="mb-3 text-start">
+                <label class="form-label" for="email">Email address</label>
+                <div class="form-icon-container">
+                  <input class="form-control form-icon-input" id="email" name="email" type="email"
+                    placeholder="name@example.com" required />
+                  <span class="fas fa-user text-body fs-9 form-icon"></span>
+                </div>
+              </div>
+
+              <div class="mb-3 text-start">
+                <label class="form-label" for="password">Password</label>
+                <div class="form-icon-container" data-password="data-password">
+                  <input class="form-control form-icon-input pe-6" id="password" name="password" type="password"
+                    placeholder="Password" required />
+                  <span class="fas fa-key text-body fs-9 form-icon"></span>
+                  <button class="btn px-3 py-0 h-100 position-absolute top-0 end-0 fs-7 text-body-tertiary"
+                    type="button" data-password-toggle="data-password-toggle">
+                    <span class="uil uil-eye show"></span>
+                    <span class="uil uil-eye-slash hide"></span>
+                  </button>
+                </div>
+              </div>
+
+              <button type="submit" class="btn btn-moodibite w-100 mb-3">
+                Sign In
+              </button>
+
+              <div class="text-center"><a class="fs-9 fw-bold auth-link" href="{% url 'sign-up' %}">Create an
+                  account</a></div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- ===============================================-->
+      <!--    JavaScripts-->
+      <!-- ===============================================-->
+      <script src="/static/vendors/popper/popper.min.js"></script>
+      <script src="/static/vendors/bootstrap/bootstrap.min.js"></script>
+      <script src="/static/vendors/anchorjs/anchor.min.js"></script>
+      <script src="/static/vendors/is/is.min.js"></script>
+      <script src="/static/vendors/fontawesome/all.min.js"></script>
+      <script src="/static/vendors/lodash/lodash.min.js"></script>
+      <script src="/static/vendors/list.js/list.min.js"></script>
+      <script src="/static/vendors/feather-icons/feather.min.js"></script>
+      <script src="/static/vendors/dayjs/dayjs.min.js"></script>
+      <script src="/static/assets/js/phoenix.js"></script>
+</body>
+
+
+<!-- Mirrored from prium.github.io/phoenix/v1.23.0/pages/authentication/simple/sign-in.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 18 Jul 2025 04:00:57 GMT -->
+
+</html>

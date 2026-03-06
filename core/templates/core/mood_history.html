@@ -1,0 +1,77 @@
+{% extends 'core/base.html' %}
+{% block content %}
+
+<head>
+    <style>
+        
+    </style>
+</head>
+<div class="container-fluid py-5 mood-history">
+
+    <!-- Header -->
+    <div class="text-center mb-5">
+        <h2 class="fw-bold"> Mood History</h2>
+        <p class="text-muted">
+            Emotional journey
+        </p>
+    </div>
+
+    {% if users %}
+    <form method="get" class="mb-4 d-flex gap-3">
+
+
+    <input type="text"
+           name="search"
+           class="form-control w-25"
+           placeholder="Search username..."
+           value="{{ request.GET.search }}">
+
+    <button class="btn btn-outline-secondary">Filter</button>
+</form>
+{% endif %}
+
+
+    {% if mood_entries %}
+    {% if user.is_staff %}
+    <div class="table-responsive">
+        <table class="table table-striped table-hover align-middle">
+            <thead class="table-dark">
+                <tr>
+                    <th>User</th>
+                    <th>Mood</th>
+                    <th>Intensity</th>
+                    <th>Stress</th>
+                    <th>Energy</th>
+                    <th>Hunger</th>
+                    <th>Date</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for mood in mood_entries %}
+                <tr>
+                    <td>{{ mood.user.username }}</td>
+                    <td>{{ mood.mood_category }}</td>
+                    <td>{{ mood.mood_intensity }}/10</td>
+                    <td>{{ mood.stress_level }}/10</td>
+                    <td>{{ mood.energy_level }}/10</td>
+                    <td>{{ mood.hunger_level }}/10</td>
+                    <td>{{ mood.created_at|date:"M d, Y" }}</td>
+                    <td>
+                        <a href="{% url 'mood_update' mood.id %}" class="btn btn-sm btn-outline-primary">Edit</a>
+                        <a href="{% url 'mood_delete' mood.id %}" class="btn btn-sm btn-outline-danger">Delete</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% endif %}
+
+    {% else %}
+    <p class="text-center text-muted">No mood entries yet.</p>
+    {% endif %}
+
+</div>
+
+{% endblock content %}
