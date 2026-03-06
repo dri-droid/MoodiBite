@@ -321,7 +321,7 @@ def sign_up(request):
             password=password
         )
         login(request,user)
-        return redirect('base')
+        return redirect('sign-in')
     return render(request,'core/sign-up.html')
 
 
