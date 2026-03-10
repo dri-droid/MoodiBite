@@ -21,7 +21,7 @@ User = get_user_model()
 @login_required
 def log_mood(request):
     ensure_mood_categories()
-
+    recommendation = None
     if request.method == "POST":
         form = moodEntryForm(request.POST)
         if form.is_valid():
@@ -65,17 +65,15 @@ def log_mood(request):
             url = "https://openrouter.ai/api/v1/chat/completions"
 
             data = {
-                "model" : "openai/gpt-oss-120b:free",
+                "model" : "meta-llama/llama-3.3-70b-instruct:free",
                 "messages" : [{"role":"user","content" : prompt}]
             }
 
             headers = {"Authorization":f"Bearer {settings.OPENROUTER_API_KEY}",
             "Content-Type": "application/json"
             }
-            recommendation = None
             response = requests.post(url,json=data,headers=headers)
-            print(response.status_code)
-            print(response.text)
+            
             if response.status_code == 200:
                 food_suggestions = response.json()['choices'][0]['message']['content']
             
@@ -108,10 +106,8 @@ def log_mood(request):
                 recommendation.alternative_recommendations.set(alt_items)
             else:
                 food_suggestions = "Sorry, could not fetch suggestions at this time."
-            if recommendation:
-                request.session['recommendation_id'] = recommendation.id
-                return redirect('food_suggestions')
-            print(food_suggestions)
+            request.session['recommendation_id'] = recommendation.id
+            return redirect('food_suggestions')
     else:
         form = moodEntryForm()
 
