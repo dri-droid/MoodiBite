@@ -74,7 +74,8 @@ def log_mood(request):
             }
             recommendation = None
             response = requests.post(url,json=data,headers=headers)
-            
+            print(response.status_code)
+            print(response.text)
             if response.status_code == 200:
                 food_suggestions = response.json()['choices'][0]['message']['content']
             
