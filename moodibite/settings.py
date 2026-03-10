@@ -132,5 +132,5 @@ STATIC_ROOT  = os.path.join(BASE_DIR, 'staticroot')
 MEDIA_ROOT  = os.path.join(BASE_DIR, 'media')
 
 
-OPENROUTER_API_KEY = "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"
+OPENROUTER_API_KEY = "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"
 
