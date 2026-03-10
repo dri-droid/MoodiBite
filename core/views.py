@@ -72,6 +72,7 @@ def log_mood(request):
             headers = {"Authorization":f"Bearer {settings.OPENROUTER_API_KEY}",
             "Content-Type": "application/json"
             }
+            recommendation = None
             response = requests.post(url,json=data,headers=headers)
             
             if response.status_code == 200:
