@@ -7,3 +7,6 @@ db.sqlite3
 # Environments
 .env
 .env.*
+# Python cache
+__pycache__/
+*.pyc
