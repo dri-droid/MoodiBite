@@ -28,84 +28,88 @@ def log_mood(request):
             mood_entry = form.save(commit=False)
             mood_entry.user = request.user
             mood_entry.save()
+            try:
+                food_names = list(
+                FoodItem.objects.values_list('name', flat=True))
+
+                food_list_text = "\n".join(f"- {name}" for name in food_names)
+
+
+                prompt = f"""
+                User mood category :  {form.cleaned_data['mood_category']}
+                Mood intensity : {form.cleaned_data['mood_intensity']}
+                Stress level : {form.cleaned_data['stress_level']}
+                Energy level : {form.cleaned_data['energy_level']}
+                Hunger level : {form.cleaned_data['hunger_level']}
+                Craving : {form.cleaned_data['craving']}
+                Time of the day : {form.cleaned_data['time_of_day']}
+                Weather : {form.cleaned_data['weather']}
+                 feelings : {form.cleaned_data['specific_feelings']}
+                 MUST choose food items ONLY from the list below.
+                 NOT invent new food names.
+                 NOT modify names.
+                Use the names EXACTLY as written.
+
+                AVAILABLE FOODS:{food_list_text}
+
+                Return response in EXACT format:
+
+                PRIMARY: <food name from list>
+                ALTERNATIVES:
+                - <food name from list>
+                - <food name from list>
+                EXPLANATION: <short explanation
+
+                """
+
+                url = "https://openrouter.ai/api/v1/chat/completions"
+
+                data = {
+                    "model" : "meta-llama/llama-3.3-70b-instruct:free",
+                    "messages" : [{"role":"user","content" : prompt}]
+                }
+
+                headers = {"Authorization":f"Bearer {settings.OPENROUTER_API_KEY}",
+                "Content-Type": "application/json"
+                }
+                response = requests.post(url,json=data,headers=headers)
             
-            food_names = list(
-            FoodItem.objects.values_list('name', flat=True))
-
-            food_list_text = "\n".join(f"- {name}" for name in food_names)
-
-
-            prompt = f"""
-            User mood category :  {form.cleaned_data['mood_category']}
-            Mood intensity : {form.cleaned_data['mood_intensity']}
-            Stress level : {form.cleaned_data['stress_level']}
-            Energy level : {form.cleaned_data['energy_level']}
-            Hunger level : {form.cleaned_data['hunger_level']}
-            Craving : {form.cleaned_data['craving']}
-            Time of the day : {form.cleaned_data['time_of_day']}
-            Weather : {form.cleaned_data['weather']}
-            Specific feelings : {form.cleaned_data['specific_feelings']}
-            You MUST choose food items ONLY from the list below.
-            DO NOT invent new food names.
-            DO NOT modify names.
-            Use the names EXACTLY as written.
-
-            AVAILABLE FOODS:{food_list_text}
-
-            Return response in EXACT format:
-
-            PRIMARY: <food name from list>
-            ALTERNATIVES:
-            - <food name from list>
-            - <food name from list>
-            EXPLANATION: <short explanation
-
-            """
-
-            url = "https://openrouter.ai/api/v1/chat/completions"
-
-            data = {
-                "model" : "meta-llama/llama-3.3-70b-instruct:free",
-                "messages" : [{"role":"user","content" : prompt}]
-            }
-
-            headers = {"Authorization":f"Bearer {settings.OPENROUTER_API_KEY}",
-            "Content-Type": "application/json"
-            }
-            response = requests.post(url,json=data,headers=headers)
+                if response.status_code == 200:
+                    food_suggestions = response.json()['choices'][0]['message']['content']
             
-            if response.status_code == 200:
-                food_suggestions = response.json()['choices'][0]['message']['content']
-            
-                lines = food_suggestions.splitlines()
-                primary_food = None
-                alternatives = []
-                explanation = ""
-                for line in lines:
-                    if line.startswith("PRIMARY:"):
-                        primary_food = line.replace("PRIMARY:", "").strip()
+                    lines = food_suggestions.splitlines()
+                    primary_food = None
+                    alternatives = []
+                    explanation = ""
+                    for line in lines:
+                        if line.startswith("PRIMARY:"):
+                            primary_food = line.replace("PRIMARY:", "").strip()
 
-                    elif line.startswith("-"):
-                        alternatives.append(line.replace("-", "").strip())
+                        elif line.startswith("-"):
+                            alternatives.append(line.replace("-", "").strip())
 
-                    elif line.startswith("EXPLANATION:"):
-                        explanation = line.replace("EXPLANATION:", "").strip()
+                        elif line.startswith("EXPLANATION:"):
+                            explanation = line.replace("EXPLANATION:", "").strip()
                 
 
-                primary_item = FoodItem.objects.filter(name=primary_food).first()
-                alt_items = FoodItem.objects.filter(
-                        name__in=alternatives)
+                    primary_item = FoodItem.objects.filter(name=primary_food).first()
+                    alt_items = FoodItem.objects.filter(
+                            name__in=alternatives)
 
 
-                recommendation = FoodRecommendation.objects.create(
-                    mood_entry=mood_entry,
-                    primary_recommendation=primary_item,
-                    ai_explanation=explanation
-                )
+                    recommendation = FoodRecommendation.objects.create(
+                        mood_entry=mood_entry,
+                        primary_recommendation=primary_item,
+                        ai_explanation=explanation
+                    )
 
-                recommendation.alternative_recommendations.set(alt_items)
-            else:
+                    recommendation.alternative_recommendations.set(alt_items)
+            except (requests.RequestException, KeyError, IndexError, ValueError) as e:
+                # Handles network/API errors or bad response parsing
+                print("AI API Error:", e)
                 food_suggestions = "Sorry, could not fetch suggestions at this time."
+                recommendation = None
+        
             if recommendation:
                 request.session['recommendation_id'] = recommendation.id
                 return redirect('food_suggestions')
