@@ -323,7 +323,7 @@ def sign_up(request):
             password=password
         )
         login(request,user)
-        return redirect('sign-in')
+        return redirect('index')
     return render(request,'core/sign-up.html')
 
 
