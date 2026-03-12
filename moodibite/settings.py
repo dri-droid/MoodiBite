@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/6.0/ref/settings/
 
 from pathlib import Path
 import os
-
+from dotenv import load_dotenv
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -131,6 +131,6 @@ STATICFILES_DIRS = [
 STATIC_ROOT  = os.path.join(BASE_DIR, 'staticroot')
 MEDIA_ROOT  = os.path.join(BASE_DIR, 'media')
 
-
-OPENROUTER_API_KEY = "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"
+load_dotenv(BASE_DIR / ".env")
+OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY")
 
