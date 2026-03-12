@@ -1,0 +1,254 @@
+[
+{
+  "model": "core.fooditem",
+  "pk": 1,
+  "fields": {
+    "name": "Masala Khichdi",
+    "description": "A comforting , masala khichdi is all you need; warm, hearty meal.",
+    "category": 2,
+    "calories": 100,
+    "prep_time": 20,
+    "difficulty": "easy",
+    "recipe_link": "https://www.youtube.com/watch?v=pQeTZHdEf3g",
+    "image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSzGDXs48T5kB3l8uq244tU3q2dTR1p23d6ZQ&s"
+  }
+},
+{
+  "model": "core.fooditem",
+  "pk": 7,
+  "fields": {
+    "name": "Maggie",
+    "description": "Quick and tasty instant noodle dish perfect for a light meal.",
+    "category": 3,
+    "calories": 310,
+    "prep_time": 7,
+    "difficulty": "easy",
+    "recipe_link": "https://in.pinterest.com/pin/maggi-recipe--124904589659310584/",
+    "image_url": "https://images.unsplash.com/photo-1612929633738-8fe44f7ec841"
+  }
+},
+{
+  "model": "core.fooditem",
+  "pk": 8,
+  "fields": {
+    "name": "Curd rice",
+    "description": "A soothing South Indian dish made with soft cooked rice mixed with fresh curd and lightly tempered spices. Known for being cooling, gentle on the stomach, and comforting.",
+    "category": 2,
+    "calories": 220,
+    "prep_time": 20,
+    "difficulty": "medium",
+    "recipe_link": "https://www.instagram.com/reel/Cy-est5v5OL/?hl=en",
+    "image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSCiPZtbHY0xig4rZgiexzZ-tt71MmcrgGbyQ&s"
+  }
+},
+{
+  "model": "core.fooditem",
+  "pk": 9,
+  "fields": {
+    "name": "poha",
+    "description": "A light and savory Indian food made from flattened rice, spices, and garnished with herbs.",
+    "category": 4,
+    "calories": 260,
+    "prep_time": 25,
+    "difficulty": "medium",
+    "recipe_link": "https://www.youtube.com/watch?v=UXaOuBoatUA",
+    "image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQSrekXe6meDoRdXDHR1R0MN5zSEpyKYvrsqw&s"
+  }
+},
+{
+  "model": "core.fooditem",
+  "pk": 10,
+  "fields": {
+    "name": "White sauce pasta",
+    "description": "Creamy pasta tossed in a rich white sauce made with butter, cream, and cheese, topped with herbs. Comforting, filling, and great for indulgent meals.",
+    "category": 5,
+    "calories": 420,
+    "prep_time": 30,
+    "difficulty": "medium",
+    "recipe_link": "https://www.facebook.com/RanveerBrar/videos/white-sauce-pasta-recipe/2996329894005263/",
+    "image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQJbnUexqcDdO_Bhh7EEP4M5W8yA26EJcnKyA&s"
+  }
+},
+{
+  "model": "core.fooditem",
+  "pk": 11,
+  "fields": {
+    "name": "Brownie",
+    "description": "Rich, chocolatey baked treat with a fudgy interior and slightly crisp edges — a perfect indulgence.",
+    "category": 6,
+    "calories": 250,
+    "prep_time": 30,
+    "difficulty": "hard",
+    "recipe_link": "https://www.youtube.com/watch?v=rRtngF-Liu4",
+    "image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSXAIQrya_2ESlXWe3lAzzQLI0E2F8S8h_AOA&s"
+  }
+},
+{
+  "model": "core.fooditem",
+  "pk": 12,
+  "fields": {
+    "name": "Cheese Cake",
+    "description": "A rich, creamy dessert made with cream cheese on a buttery biscuit base.",
+    "category": 6,
+    "calories": 350,
+    "prep_time": 120,
+    "difficulty": "hard",
+    "recipe_link": "https://www.instagram.com/reel/DMPxe3iP0gC/?hl=en",
+    "image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTIBIPFxQLy6CyJD_zy9jweokseBM-DjpJs5A&s"
+  }
+},
+{
+  "model": "core.fooditem",
+  "pk": 14,
+  "fields": {
+    "name": "Aloo sabzi",
+    "description": "A simple, flavorful Indian potato curry cooked with spices and herbs.",
+    "category": 4,
+    "calories": 190,
+    "prep_time": 30,
+    "difficulty": "medium",
+    "recipe_link": "https://www.youtube.com/watch?v=6DRHtpuPc50",
+    "image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQrVj640nvvXDXFunLW3TGJl6_32q6PZQATjQ&s"
+  }
+},
+{
+  "model": "core.fooditem",
+  "pk": 16,
+  "fields": {
+    "name": "Veg pulao",
+    "description": "Fragrant rice cooked with vegetables and whole spices",
+    "category": 4,
+    "calories": 350,
+    "prep_time": 25,
+    "difficulty": "medium",
+    "recipe_link": "https://www.youtube.com/watch?v=8kmYaQ1Ny2c",
+    "image_url": "https://tiffinandteaofficial.com/wp-content/uploads/2023/01/Vegetarian-1.jpg"
+  }
+},
+{
+  "model": "core.fooditem",
+  "pk": 17,
+  "fields": {
+    "name": "Red sauce pasta",
+    "description": "Tangy tomato-based pasta with herbs and garlic.",
+    "category": 5,
+    "calories": 400,
+    "prep_time": 25,
+    "difficulty": "medium",
+    "recipe_link": "https://www.youtube.com/watch?v=iQ38VKAjQgo",
+    "image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRvOBsdOXEwOQToE0g2u-1IJUE77KdwLtgvyA&s"
+  }
+},
+{
+  "model": "core.fooditem",
+  "pk": 18,
+  "fields": {
+    "name": "Veg sandwich",
+    "description": "Grilled sandwich stuffed with fresh vegetables and cheese.",
+    "category": 5,
+    "calories": 300,
+    "prep_time": 10,
+    "difficulty": "easy",
+    "recipe_link": "https://www.youtube.com/watch?v=9LVibvN3DUU&vl=en",
+    "image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQHDdAzb1Rm9d6P4sV2Hn65N7rpcwIoGsL6jA&s"
+  }
+},
+{
+  "model": "core.fooditem",
+  "pk": 19,
+  "fields": {
+    "name": "Garlic bread",
+    "description": "Crispy bread flavored with garlic butter and herbs.",
+    "category": 5,
+    "calories": 250,
+    "prep_time": 10,
+    "difficulty": "medium",
+    "recipe_link": "https://www.youtube.com/watch?v=9dezux3qocM",
+    "image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSi3iy_wNUjL8iiJ_Hhva6k_Dniw3ee9_Iopg&s"
+  }
+},
+{
+  "model": "core.fooditem",
+  "pk": 20,
+  "fields": {
+    "name": "Kheer",
+    "description": "Traditional rice pudding cooked with milk and sugar.",
+    "category": 6,
+    "calories": 300,
+    "prep_time": 30,
+    "difficulty": "medium",
+    "recipe_link": "https://www.youtube.com/watch?v=6d1F4H78B0c&vl=en",
+    "image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTOdF6HLWZeH7Wna400MMuzxfzLoRbGBPQX1Q&s"
+  }
+},
+{
+  "model": "core.fooditem",
+  "pk": 21,
+  "fields": {
+    "name": "Aloo paratha",
+    "description": "Stuffed flatbread filled with spiced mashed potatoes.",
+    "category": 2,
+    "calories": 350,
+    "prep_time": 40,
+    "difficulty": "medium",
+    "recipe_link": "https://www.youtube.com/watch?v=xAQicJFCks8",
+    "image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQHsS90YNwCIU06SCFHYb0WRGnE5IQ0I_PvCA&s"
+  }
+},
+{
+  "model": "core.fooditem",
+  "pk": 22,
+  "fields": {
+    "name": "French Fries",
+    "description": "Crispy fried potato strips",
+    "category": 3,
+    "calories": 420,
+    "prep_time": 20,
+    "difficulty": "easy",
+    "recipe_link": "https://www.youtube.com/shorts/BwNqsHb7YQU",
+    "image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSguBeHSC355CZfxz7JbAk47HwgSTxrwTz6Bg&s"
+  }
+},
+{
+  "model": "core.fooditem",
+  "pk": 23,
+  "fields": {
+    "name": "Grilled paneer tikka",
+    "description": "Lightly grilled paneer cubes with spices.",
+    "category": 4,
+    "calories": 300,
+    "prep_time": 30,
+    "difficulty": "medium",
+    "recipe_link": "https://www.youtube.com/watch?v=dNmqcJ5G8RQ",
+    "image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSp8YFHqBKIRf8xUs-2WxooT58bYqq8yg2jYA&s"
+  }
+},
+{
+  "model": "core.fooditem",
+  "pk": 24,
+  "fields": {
+    "name": "Pancakes",
+    "description": "Soft, fluffy pancakes served with syrup",
+    "category": 6,
+    "calories": 380,
+    "prep_time": 30,
+    "difficulty": "medium",
+    "recipe_link": "https://www.youtube.com/watch?v=5YPN1v6IC9Y",
+    "image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRWTOwLKKGbFbYibqxDBnNNuWk3K0MFVhyYUQ&s"
+  }
+},
+{
+  "model": "core.fooditem",
+  "pk": 25,
+  "fields": {
+    "name": "Vadapao",
+    "description": "Description:",
+    "category": 2,
+    "calories": 300,
+    "prep_time": 60,
+    "difficulty": "medium",
+    "recipe_link": "https://www.youtube.com/watch?v=r4saZD0J_gU",
+    "image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSgv42kyQ9IzFwhYqbjNt8vd7MJRbg0on38Lw&s"
+  }
+}
+]
