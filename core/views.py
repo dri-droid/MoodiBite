@@ -71,6 +71,7 @@ def log_mood(request):
             headers = {"Authorization":f"Bearer {settings.OPENROUTER_API_KEY}",
             "Content-Type": "application/json"
             }
+            recommendation = None
             print("API KEY:", settings.OPENROUTER_API_KEY)
             response = requests.post(url,json=data,headers=headers)
             print("STATUS:", response.status_code)
@@ -110,6 +111,8 @@ def log_mood(request):
             if recommendation:
                 request.session['recommendation_id'] = recommendation.id
                 return redirect('food_suggestions')
+            else:
+                messages.error(request, "AI didn't respond. Please try again later.")
     else:
         form = moodEntryForm()
 
