@@ -64,7 +64,7 @@ def log_mood(request):
             url = "https://openrouter.ai/api/v1/chat/completions"
 
             data = {
-                "model": "meta-llama/llama-3.1-8b-instruct:free",
+                "model": "mistralai/mistral-7b-instruct:free",
                 "messages" : [{"role":"user","content" : prompt}]
             }
 
