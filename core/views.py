@@ -107,8 +107,9 @@ def log_mood(request):
                 recommendation.alternative_recommendations.set(alt_items)
             else:
                 food_suggestions = "Sorry, could not fetch suggestions at this time."
-            request.session['recommendation_id'] = recommendation.id
-            return redirect('food_suggestions')
+            if recommendation:
+                request.session['recommendation_id'] = recommendation.id
+                return redirect('food_suggestions')
     else:
         form = moodEntryForm()
 
